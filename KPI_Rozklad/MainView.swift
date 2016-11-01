@@ -15,11 +15,14 @@ class MainView: UIViewController {
         return .lightContent
     }
     
-    
+    // Left menu view
+    @IBOutlet weak var menuView: UIView!
     // Main app view
     @IBOutlet weak var mainContentView: UIView!
     // Left menu button
     @IBOutlet weak var menuButton: UIButton!
+    // Sync button
+    @IBOutlet weak var syncButton: UIButton!
     // Group name box
     @IBOutlet weak var groupRectangle: UIView!
     // Menu items images
@@ -31,13 +34,27 @@ class MainView: UIViewController {
     @IBOutlet weak var aboutUsImage: UIImageView!
     
     
+    // ADD Views
+    @IBOutlet weak var addTaskView: UIView!
+    @IBOutlet weak var addNoteView: UIView!
+    
+    // ADD Image Views
+    @IBOutlet weak var addTaskImageView: UIImageView!
+    @IBOutlet weak var addNoteImageView: UIImageView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // Expanding button reaction area with insets
-        menuButton.imageEdgeInsets = UIEdgeInsetsMake(10, 15, 10, 15);
+        menuButton.imageEdgeInsets = UIEdgeInsetsMake(10, 15, 10, 15)
+        syncButton.imageEdgeInsets = UIEdgeInsetsMake(8, 13, 8, 13)
+        
+        addTaskView.layer.cornerRadius = 4
+        addNoteView.layer.cornerRadius = 4
+        
         
         // Setup mainContentView shadow
         mainContentView.layer.shadowColor = UIColor.black.cgColor
@@ -49,8 +66,27 @@ class MainView: UIViewController {
         // Setting group menu button corner radius
         groupRectangle.layer.cornerRadius = 8.0
         
+        
+        
     }
 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        addTaskView.layer.shadowColor = UIColor.black.cgColor
+        addTaskView.layer.shadowOpacity = 0.2
+        addTaskView.layer.shadowRadius = 5
+        addTaskView.layer.shadowOffset = CGSize.zero
+        addTaskView.layer.shadowPath = UIBezierPath(rect: addTaskView.bounds).cgPath
+        
+        addNoteView.layer.shadowColor = UIColor.black.cgColor
+        addNoteView.layer.shadowOpacity = 0.2
+        addNoteView.layer.shadowRadius = 5
+        addNoteView.layer.shadowOffset = CGSize.zero
+        addNoteView.layer.shadowPath = UIBezierPath(rect: addTaskView.bounds).cgPath
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -219,6 +255,7 @@ class MainView: UIViewController {
             
             //Performing translation
             sender.setTranslation(CGPoint.zero, in: self.view)
+            
         }
         if sender.state == .ended {
             //Eded interaction
@@ -265,9 +302,35 @@ class MainView: UIViewController {
         }
     }
     
+    // Add task
+    @IBAction func addTaskTouchDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.addTaskImageView.layer.opacity = 0.5
+            sender.layer.opacity = 0.5
+        }, completion: { (Bool) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
+                self.addTaskImageView.layer.opacity = 1
+                sender.layer.opacity = 1
+            })
+        })
+    }
     
     
+   
     
+    
+    // Add note
+    @IBAction func addNoteTouchDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.addNoteImageView.layer.opacity = 0.5
+            sender.layer.opacity = 0.5
+        }, completion: { (Bool) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
+                self.addNoteImageView.layer.opacity = 1
+                sender.layer.opacity = 1
+            })
+        })
+    }
     
     
 
