@@ -42,6 +42,13 @@ class MainView: UIViewController {
     @IBOutlet weak var addTaskImageView: UIImageView!
     @IBOutlet weak var addNoteImageView: UIImageView!
     
+    // All content sections
+    @IBOutlet weak var allNotes: UIView!
+    @IBOutlet weak var allTasks: UIView!
+    
+    // Fast list
+    @IBOutlet weak var fastScheduleList: UIImageView!
+    
     
     
     override func viewDidLoad() {
@@ -84,6 +91,23 @@ class MainView: UIViewController {
         addNoteView.layer.shadowOffset = CGSize.zero
         addNoteView.layer.shadowPath = UIBezierPath(rect: addTaskView.bounds).cgPath
         
+        allNotes.layer.shadowColor = UIColor.black.cgColor
+        allNotes.layer.shadowOpacity = 0.5
+        allNotes.layer.shadowRadius = 8
+        allNotes.layer.shadowOffset = CGSize.zero
+        allNotes.layer.shadowPath = UIBezierPath(rect: allNotes.bounds).cgPath
+        
+        allTasks.layer.shadowColor = UIColor.black.cgColor
+        allTasks.layer.shadowOpacity = 0.3
+        allTasks.layer.shadowRadius = 5
+        allTasks.layer.shadowOffset = CGSize.zero
+        allTasks.layer.shadowPath = UIBezierPath(rect: allTasks.bounds).cgPath
+        
+        fastScheduleList.layer.shadowColor = UIColor.black.cgColor
+        fastScheduleList.layer.shadowOpacity = 0.3
+        fastScheduleList.layer.shadowRadius = 3
+        fastScheduleList.layer.shadowOffset = CGSize.zero
+        fastScheduleList.layer.shadowPath = UIBezierPath(rect: allTasks.bounds).cgPath
     }
     
     
@@ -306,7 +330,6 @@ class MainView: UIViewController {
     @IBAction func addTaskTouchDown(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.addTaskImageView.layer.opacity = 0.5
-            sender.layer.opacity = 0.5
         }, completion: { (Bool) -> Void in
             UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
                 self.addTaskImageView.layer.opacity = 1
@@ -314,8 +337,6 @@ class MainView: UIViewController {
             })
         })
     }
-    
-    
    
     
     
@@ -323,7 +344,6 @@ class MainView: UIViewController {
     @IBAction func addNoteTouchDown(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.addNoteImageView.layer.opacity = 0.5
-            sender.layer.opacity = 0.5
         }, completion: { (Bool) -> Void in
             UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
                 self.addNoteImageView.layer.opacity = 1
