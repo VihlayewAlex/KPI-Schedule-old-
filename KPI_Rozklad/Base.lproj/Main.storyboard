@@ -499,16 +499,32 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCN-RA-d15">
                                                         <rect key="frame" x="0.0" y="99" width="320" height="298"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fastListBg" translatesAutoresizingMaskIntoConstraints="NO" id="L47-qD-jsO">
+                                                            <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fastListBg" translatesAutoresizingMaskIntoConstraints="NO" id="L47-qD-jsO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
                                                             </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J49-hL-PiM">
+                                                                <rect key="frame" x="96" y="235" width="129" height="45"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="129" id="gmg-ls-6FL"/>
+                                                                    <constraint firstAttribute="height" constant="45" id="p69-yp-aeY"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="19"/>
+                                                                <state key="normal" title="See all">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="seeAllTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="WXc-MY-ahi"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.44959935897435888" green="0.44024892498765611" blue="0.41219762302754781" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.28102964743589742" green="0.2751850012765919" blue="0.25765106279867533" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
+                                                            <constraint firstItem="J49-hL-PiM" firstAttribute="centerX" secondItem="bCN-RA-d15" secondAttribute="centerX" id="4Ds-AM-iwQ"/>
                                                             <constraint firstItem="L47-qD-jsO" firstAttribute="top" secondItem="bCN-RA-d15" secondAttribute="top" id="5nF-02-WDx"/>
                                                             <constraint firstAttribute="bottom" secondItem="L47-qD-jsO" secondAttribute="bottom" id="HI2-Gr-YT4"/>
                                                             <constraint firstAttribute="trailing" secondItem="L47-qD-jsO" secondAttribute="trailing" id="dCv-DF-WMf"/>
                                                             <constraint firstItem="L47-qD-jsO" firstAttribute="leading" secondItem="bCN-RA-d15" secondAttribute="leading" id="oJO-LX-DgB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="J49-hL-PiM" secondAttribute="bottom" constant="18" id="qJK-eT-mli"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -589,6 +605,7 @@
                         <outlet property="menuView" destination="CVn-Z2-5L2" id="4kf-8X-QuD"/>
                         <outlet property="notesImage" destination="sJn-F1-4J1" id="3nD-hx-bNU"/>
                         <outlet property="scheduleImage" destination="tW7-jx-fby" id="mgo-gD-lmZ"/>
+                        <outlet property="seeAllButton" destination="J49-hL-PiM" id="g95-xx-XGy"/>
                         <outlet property="settingsImage" destination="Xbs-i6-X27" id="sXr-WI-WzD"/>
                         <outlet property="syncButton" destination="GL0-JF-aOj" id="Ew1-un-LAM"/>
                         <outlet property="tasksImage" destination="qIp-bE-hqg" id="THt-09-xDs"/>

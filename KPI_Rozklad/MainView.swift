@@ -49,6 +49,7 @@ class MainView: UIViewController {
     // Fast list
     @IBOutlet weak var fastScheduleList: UIImageView!
     
+    @IBOutlet weak var seeAllButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -73,7 +74,9 @@ class MainView: UIViewController {
         // Setting group menu button corner radius
         groupRectangle.layer.cornerRadius = 8.0
         
-        
+        seeAllButton.layer.cornerRadius = seeAllButton.frame.height/2
+        seeAllButton.layer.borderColor = UIColor.white.cgColor
+        seeAllButton.layer.borderWidth = 1
         
     }
 
@@ -351,6 +354,21 @@ class MainView: UIViewController {
             })
         })
     }
+    
+    
+    
+    @IBAction func seeAllTouch(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            sender.layer.opacity = 0.3
+        }, completion: { (Bool) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
+                self.addTaskImageView.layer.opacity = 1
+                sender.layer.opacity = 1
+            })
+        })
+    }
+    
+    
     
     
 
