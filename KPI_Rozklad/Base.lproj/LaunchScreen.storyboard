@@ -24,26 +24,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="cxO-kN-x4i">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-Mb-PKn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eVF-wu-kyE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="ExP-ML-udz"/>
-                                </constraints>
-                                <blurEffect style="dark"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="cxO-kN-x4i" secondAttribute="trailing" id="9qn-h6-INu"/>
-                            <constraint firstItem="Mwd-Mb-PKn" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Jb7-CB-cri"/>
                             <constraint firstItem="cxO-kN-x4i" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Sb3-3K-rey"/>
-                            <constraint firstAttribute="trailing" secondItem="Mwd-Mb-PKn" secondAttribute="trailing" id="US3-ma-340"/>
                             <constraint firstItem="cxO-kN-x4i" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="WLl-3Z-CsG"/>
-                            <constraint firstItem="Mwd-Mb-PKn" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="c3g-LR-UXd"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="cxO-kN-x4i" secondAttribute="bottom" id="iOy-w9-nb6"/>
                         </constraints>
                     </view>

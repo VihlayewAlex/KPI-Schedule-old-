@@ -8,71 +8,80 @@
 
 import UIKit
 
-
 class MainView: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    // Left menu view
-    @IBOutlet weak var menuView: UIView!
-    // Main app view
-    @IBOutlet weak var mainContentView: UIView!
-    // Left menu button
-    @IBOutlet weak var menuButton: UIButton!
-    // Sync button
-    @IBOutlet weak var syncButton: UIButton!
-    // Group name box
-    @IBOutlet weak var groupRectangle: UIView!
-    // Menu items images
-    @IBOutlet weak var scheduleImage: UIImageView!
-    @IBOutlet weak var tasksImage: UIImageView!
-    @IBOutlet weak var notesImage: UIImageView!
-    @IBOutlet weak var teachersImage: UIImageView!
-    @IBOutlet weak var settingsImage: UIImageView!
-    @IBOutlet weak var aboutUsImage: UIImageView!
+    // ROOT VIEWS
+        // Left menu root view
+        @IBOutlet weak var menuView: UIView!
+        // Main screen root view
+        @IBOutlet weak var mainContentView: UIView!
     
+    // NAVIGATION BAR
+        // Navigation button for menu opening
+        @IBOutlet weak var menuButton: UIButton!
+        // Sync button
+        @IBOutlet weak var syncButton: UIButton!
     
-    // ADD Views
-    @IBOutlet weak var addTaskView: UIView!
-    @IBOutlet weak var addTaskButton: UIButton!
-    var addTaskButtonIsHighlighted = false
-    @IBOutlet weak var addNoteView: UIView!
-    @IBOutlet weak var addNoteButton: UIButton!
-    var addNoteButtonIsHighlighted = false
+    // MENU
+        // Group name box
+        @IBOutlet weak var groupRectangle: UIView!
+        // Menu button images
+        @IBOutlet weak var scheduleImage: UIImageView!
+        @IBOutlet weak var tasksImage: UIImageView!
+        @IBOutlet weak var notesImage: UIImageView!
+        @IBOutlet weak var teachersImage: UIImageView!
+        @IBOutlet weak var settingsImage: UIImageView!
+        @IBOutlet weak var aboutUsImage: UIImageView!
     
-    // All content sections
-    @IBOutlet weak var allNotes: UIView!
-    @IBOutlet weak var allNotesBg: UIView!
-    var allNotesIsHighlighted = false
-    @IBOutlet weak var allTasks: UIView!
-    @IBOutlet weak var allTasksBg: UIView!
-    var allTasksIsHighlighted = false
+    // ADD TASK/NOTE BUTTONS
+        // Add note
+        @IBOutlet weak var addTaskView: UIView!
+        @IBOutlet weak var addTaskButton: UIButton!
+        var addTaskButtonIsHighlighted = false
+        // Add note
+        @IBOutlet weak var addNoteView: UIView!
+        @IBOutlet weak var addNoteButton: UIButton!
+        var addNoteButtonIsHighlighted = false
     
-    // Fast schedule view
+    // ALL CONTENT BUTTONS
+        // All Notes
+        @IBOutlet weak var allNotes: UIView!
+        @IBOutlet weak var allNotesBg: UIView!
+        var allNotesIsHighlighted = false
+        // All Tasks
+        @IBOutlet weak var allTasks: UIView!
+        @IBOutlet weak var allTasksBg: UIView!
+        var allTasksIsHighlighted = false
+    
+    // FAST SCHEDULE LIST
     @IBOutlet weak var fastScheduleList: UIView!
     @IBOutlet weak var fastScheduleListBg: UIView!
     
-    // See all button
+    // SEE ALL BUTTON
     @IBOutlet weak var seeAllButton: UIButton!
     var seeAllIsHighlighted = false
     
+    // When view is actualy loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         // Expanding button reaction area with insets
         menuButton.imageEdgeInsets = UIEdgeInsetsMake(10, 15, 10, 15)
         syncButton.imageEdgeInsets = UIEdgeInsetsMake(8, 13, 8, 13)
         
+        // Setting ADD BUTTON view's layer properties
         addTaskView.layer.cornerRadius = 4
         addNoteView.layer.cornerRadius = 4
+        
+        // Setting ADD BUTTON's image content render-mode
         addTaskButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         addNoteButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
-        
-        // Setup mainContentView shadow
+        // Setup main screen root view's shadow
         mainContentView.layer.shadowColor = UIColor.black.cgColor
         mainContentView.layer.shadowOpacity = 0.3
         mainContentView.layer.shadowOffset = CGSize.zero
@@ -82,14 +91,19 @@ class MainView: UIViewController {
         // Setting group menu button corner radius
         groupRectangle.layer.cornerRadius = 8.0
         
+        // Setting SEE ALL button's layer properties
         seeAllButton.layer.cornerRadius = seeAllButton.frame.height/2
         seeAllButton.layer.borderColor = UIColor.white.cgColor
         seeAllButton.layer.borderWidth = 1
+        
+        
+        
         
     }
 
     
     override func viewDidAppear(_ animated: Bool) {
+        
         addTaskView.layer.shadowColor = UIColor.black.cgColor
         addTaskView.layer.shadowOpacity = 0.2
         addTaskView.layer.shadowRadius = 5
@@ -145,12 +159,17 @@ class MainView: UIViewController {
     }
     
     
+    
+    // FOR FUTURE UPDATES
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
+    
+    
+    
+    /* MENU BUTTON'S OUTLETS */
     
     
     @IBAction func menuScheduleButtonTouched(_ sender: UIButton) {
@@ -274,9 +293,10 @@ class MainView: UIViewController {
     
     
     
-    // MENU
     
-    var menuIsOpen = false
+    
+    // MENU OPENING NAVIGATION BUTTON
+    var menuIsOpen = false // menu state
     @IBAction func menuShowButtonTouched() {
         if menuIsOpen != true {
             UIView.animate(withDuration: 0.3, animations: { () -> Void in
@@ -294,12 +314,19 @@ class MainView: UIViewController {
     }
     
     
-    //Action, called when user performed a slide action
+    
+    
+    
+    /* UI PAN GESTURE RECOGNIZER */
+    
+    // Action, called when user performed a slide action
     @IBAction func leftMenuMainContentSlideAction(_ sender: UIPanGestureRecognizer) {
+        
+        //Started interaction
         if sender.state == .began || sender.state == .changed {
-            //Started interaction
             
-            // Dehighlite seeAll button
+            // DEHIGHLIGHT BUTTONS ON SWIPE
+            
             if seeAllIsHighlighted == true {
                 UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
                     self.seeAllButton.layer.opacity = 1
@@ -352,6 +379,8 @@ class MainView: UIViewController {
             sender.setTranslation(CGPoint.zero, in: self.view)
             
         }
+        
+        // Ended interaction
         if sender.state == .ended {
             //Eded interaction
             
@@ -394,19 +423,23 @@ class MainView: UIViewController {
                     self.menuIsOpen = true
                 })
             }
+            
+            
         }
+        
+        
     }
+    
     
    
     
-    
+    // Add Task Actions
     @IBAction func addTaskTouchDown(_ sender: UIButton) {
         addTaskButtonIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.addTaskView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5)
         })
     }
-    
     @IBAction func addTaskTouchUpInside(_ sender: UIButton) {
         addTaskButtonIsHighlighted = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
@@ -415,13 +448,13 @@ class MainView: UIViewController {
     }
     
     
+    // Add Note Actions
     @IBAction func addNoteTouchDown(_ sender: UIButton) {
         addNoteButtonIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.addNoteView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5)
         })
     }
-    
     @IBAction func addNoteTouchUpInside(_ sender: UIButton) {
         addNoteButtonIsHighlighted = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
@@ -430,13 +463,13 @@ class MainView: UIViewController {
     }
     
     
+    // All Notes Actions
     @IBAction func allNotesTouchDown(_ sender: UIButton) {
         allNotesIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.allNotes.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.1)
         })
     }
-    
     @IBAction func allNotesTouchUpInside(_ sender: UIButton) {
         allNotesIsHighlighted = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
@@ -445,13 +478,13 @@ class MainView: UIViewController {
     }
     
     
+    // All Task Actions
     @IBAction func allTasksTouchDown(_ sender: UIButton) {
         allTasksIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.allTasks.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.1)
         })
     }
-    
     @IBAction func allTasksTouchUpInside(_ sender: UIButton) {
         allTasksIsHighlighted = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
@@ -460,14 +493,13 @@ class MainView: UIViewController {
     }
     
     
-    
+    // See all Actions
     @IBAction func seeAllTouch(_ sender: UIButton) {
         seeAllIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             sender.layer.opacity = 0.3
         })
     }
-    
     @IBAction func seeAllTouchUpInside(_ sender: UIButton) {
         seeAllIsHighlighted = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
