@@ -36,17 +36,19 @@ class MainView: UIViewController {
     
     // ADD Views
     @IBOutlet weak var addTaskView: UIView!
+    @IBOutlet weak var addTaskButton: UIButton!
+    var addTaskButtonIsHighlighted = false
     @IBOutlet weak var addNoteView: UIView!
-    
-    // ADD Image Views
-    @IBOutlet weak var addTaskImageView: UIImageView!
-    @IBOutlet weak var addNoteImageView: UIImageView!
+    @IBOutlet weak var addNoteButton: UIButton!
+    var addNoteButtonIsHighlighted = false
     
     // All content sections
     @IBOutlet weak var allNotes: UIView!
     @IBOutlet weak var allNotesBg: UIView!
+    var allNotesIsHighlighted = false
     @IBOutlet weak var allTasks: UIView!
     @IBOutlet weak var allTasksBg: UIView!
+    var allTasksIsHighlighted = false
     
     // Fast schedule view
     @IBOutlet weak var fastScheduleList: UIView!
@@ -54,7 +56,7 @@ class MainView: UIViewController {
     
     // See all button
     @IBOutlet weak var seeAllButton: UIButton!
-    
+    var seeAllIsHighlighted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,8 @@ class MainView: UIViewController {
         
         addTaskView.layer.cornerRadius = 4
         addNoteView.layer.cornerRadius = 4
+        addTaskButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        addNoteButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         
         // Setup mainContentView shadow
@@ -295,6 +299,43 @@ class MainView: UIViewController {
         if sender.state == .began || sender.state == .changed {
             //Started interaction
             
+            // Dehighlite seeAll button
+            if seeAllIsHighlighted == true {
+                UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+                    self.seeAllButton.layer.opacity = 1
+                })
+                seeAllIsHighlighted = false
+            }
+            
+            if addTaskButtonIsHighlighted == true {
+                UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+                    self.addTaskView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.25)
+                })
+                addTaskButtonIsHighlighted = false
+            }
+            
+            if addNoteButtonIsHighlighted == true {
+                UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+                    self.addNoteView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.25)
+                })
+                addNoteButtonIsHighlighted = false
+            }
+            
+            if allTasksIsHighlighted == true {
+                UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+                    self.allTasks.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.0)
+                })
+                allTasksIsHighlighted = false
+            }
+            
+            if allNotesIsHighlighted == true {
+                UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+                    self.allNotes.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.0)
+                })
+                allNotesIsHighlighted = false
+            }
+            
+            
             //Setting translation
             let translation = sender.translation(in: self.view)
             
@@ -356,48 +397,86 @@ class MainView: UIViewController {
         }
     }
     
-    // Add task
-    @IBAction func addTaskTouchDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.addTaskImageView.layer.opacity = 0.5
-        }, completion: { (Bool) -> Void in
-            UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
-                self.addTaskImageView.layer.opacity = 1
-                sender.layer.opacity = 1
-            })
-        })
-    }
    
     
     
-    // Add note
-    @IBAction func addNoteTouchDown(_ sender: UIButton) {
+    @IBAction func addTaskTouchDown(_ sender: UIButton) {
+        addTaskButtonIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.addNoteImageView.layer.opacity = 0.5
-        }, completion: { (Bool) -> Void in
-            UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
-                self.addNoteImageView.layer.opacity = 1
-                sender.layer.opacity = 1
-            })
+            self.addTaskView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5)
+        })
+    }
+    
+    @IBAction func addTaskTouchUpInside(_ sender: UIButton) {
+        addTaskButtonIsHighlighted = false
+        UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+            self.addTaskView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.25)
+        })
+    }
+    
+    
+    @IBAction func addNoteTouchDown(_ sender: UIButton) {
+        addNoteButtonIsHighlighted = true
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.addNoteView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5)
+        })
+    }
+    
+    @IBAction func addNoteTouchUpInside(_ sender: UIButton) {
+        addNoteButtonIsHighlighted = false
+        UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+            self.addNoteView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.25)
+        })
+    }
+    
+    
+    @IBAction func allNotesTouchDown(_ sender: UIButton) {
+        allNotesIsHighlighted = true
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.allNotes.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.1)
+        })
+    }
+    
+    @IBAction func allNotesTouchUpInside(_ sender: UIButton) {
+        allNotesIsHighlighted = false
+        UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+            self.allNotes.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.0)
+        })
+    }
+    
+    
+    @IBAction func allTasksTouchDown(_ sender: UIButton) {
+        allTasksIsHighlighted = true
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.allTasks.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.1)
+        })
+    }
+    
+    @IBAction func allTasksTouchUpInside(_ sender: UIButton) {
+        allTasksIsHighlighted = false
+        UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+            self.allTasks.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.0)
         })
     }
     
     
     
     @IBAction func seeAllTouch(_ sender: UIButton) {
+        seeAllIsHighlighted = true
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             sender.layer.opacity = 0.3
-        }, completion: { (Bool) -> Void in
-            UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
-                self.addTaskImageView.layer.opacity = 1
-                sender.layer.opacity = 1
-            })
         })
     }
     
-    
-    
+    @IBAction func seeAllTouchUpInside(_ sender: UIButton) {
+        seeAllIsHighlighted = false
+        UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
+            sender.layer.opacity = 1
+        })
+    }
     
 
+    
+    
 }
 
