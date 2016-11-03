@@ -44,11 +44,15 @@ class MainView: UIViewController {
     
     // All content sections
     @IBOutlet weak var allNotes: UIView!
+    @IBOutlet weak var allNotesBg: UIView!
     @IBOutlet weak var allTasks: UIView!
+    @IBOutlet weak var allTasksBg: UIView!
     
-    // Fast list
-    @IBOutlet weak var fastScheduleList: UIImageView!
+    // Fast schedule view
+    @IBOutlet weak var fastScheduleList: UIView!
+    @IBOutlet weak var fastScheduleListBg: UIView!
     
+    // See all button
     @IBOutlet weak var seeAllButton: UIButton!
     
     
@@ -94,23 +98,46 @@ class MainView: UIViewController {
         addNoteView.layer.shadowOffset = CGSize.zero
         addNoteView.layer.shadowPath = UIBezierPath(rect: addTaskView.bounds).cgPath
         
-        allNotes.layer.shadowColor = UIColor.black.cgColor
-        allNotes.layer.shadowOpacity = 0.5
-        allNotes.layer.shadowRadius = 8
-        allNotes.layer.shadowOffset = CGSize.zero
-        allNotes.layer.shadowPath = UIBezierPath(rect: allNotes.bounds).cgPath
+        // ALL NOTES
+        allNotesBg.layer.shadowColor = UIColor.black.cgColor
+        allNotesBg.layer.shadowOpacity = 0.5
+        allNotesBg.layer.shadowRadius = 8
+        allNotesBg.layer.shadowOffset = CGSize.zero
+        allNotesBg.layer.shadowPath = UIBezierPath(rect: allNotesBg.bounds).cgPath
+        let allNotesGradient = CAGradientLayer()
+        allNotesGradient.frame = allNotesBg.bounds
+        let allNotesColor1 = UIColor(red:0.35, green:0.40, blue:0.41, alpha:1.0).cgColor
+        let allNotesColor2 = UIColor(red:0.33, green:0.31, blue:0.28, alpha:1.0).cgColor
+        allNotesGradient.colors = [allNotesColor1,allNotesColor2]
+        allNotesBg.layer.addSublayer(allNotesGradient)
         
-        allTasks.layer.shadowColor = UIColor.black.cgColor
-        allTasks.layer.shadowOpacity = 0.3
-        allTasks.layer.shadowRadius = 5
-        allTasks.layer.shadowOffset = CGSize.zero
-        allTasks.layer.shadowPath = UIBezierPath(rect: allTasks.bounds).cgPath
+        // ALL TASKS
+        allTasksBg.layer.shadowColor = UIColor.black.cgColor
+        allTasksBg.layer.shadowOpacity = 0.3
+        allTasksBg.layer.shadowRadius = 5
+        allTasksBg.layer.shadowOffset = CGSize.zero
+        allTasksBg.layer.shadowPath = UIBezierPath(rect: allTasksBg.bounds).cgPath
+        let allTasksGradient = CAGradientLayer()
+        allTasksGradient.frame = allTasksBg.bounds
+        let allTasksColor1 = UIColor(red:0.37, green:0.34, blue:0.31, alpha:1.0).cgColor
+        let allTasksColor2 = UIColor(red:0.34, green:0.33, blue:0.32, alpha:1.0).cgColor
+        allTasksGradient.colors = [allTasksColor1,allTasksColor2]
+        allTasksBg.layer.addSublayer(allTasksGradient)
         
-        fastScheduleList.layer.shadowColor = UIColor.black.cgColor
-        fastScheduleList.layer.shadowOpacity = 0.3
-        fastScheduleList.layer.shadowRadius = 3
-        fastScheduleList.layer.shadowOffset = CGSize.zero
-        fastScheduleList.layer.shadowPath = UIBezierPath(rect: allTasks.bounds).cgPath
+        // FAST SCHEDULE
+        fastScheduleListBg.layer.shadowColor = UIColor.black.cgColor
+        fastScheduleListBg.layer.shadowOpacity = 0.3
+        fastScheduleListBg.layer.shadowRadius = 3
+        fastScheduleListBg.layer.shadowOffset = CGSize.zero
+        fastScheduleListBg.layer.shadowPath = UIBezierPath(rect: allTasks.bounds).cgPath
+        let fastScheduleListGradient = CAGradientLayer()
+        fastScheduleListGradient.frame = fastScheduleListBg.bounds
+        let fastScheduleListColor1 = UIColor(red:0.24, green:0.24, blue:0.23, alpha:1.0).cgColor
+        let fastScheduleListColor2 = UIColor(red:0.20, green:0.27, blue:0.28, alpha:1.0).cgColor
+        let fastScheduleListColor3 = UIColor(red:0.08, green:0.09, blue:0.09, alpha:1.0).cgColor
+        fastScheduleListGradient.colors = [fastScheduleListColor1,fastScheduleListColor2,fastScheduleListColor3]
+        fastScheduleListGradient.locations = [0.0,0.3,1.0]
+        fastScheduleListBg.layer.addSublayer(fastScheduleListGradient)
     }
     
     
@@ -361,7 +388,7 @@ class MainView: UIViewController {
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             sender.layer.opacity = 0.3
         }, completion: { (Bool) -> Void in
-            UIView.animate(withDuration: 0.1, delay: 0.2, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
                 self.addTaskImageView.layer.opacity = 1
                 sender.layer.opacity = 1
             })
