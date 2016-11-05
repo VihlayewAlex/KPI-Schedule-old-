@@ -240,6 +240,7 @@
                                                             <action selector="menuAboutUsButtonTouched:" destination="BYZ-38-t0r" eventType="touchDown" id="2nx-l5-sbR"/>
                                                             <action selector="menuAboutUsButtonUntouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="12P-1y-1SP"/>
                                                             <action selector="menuAboutUsButtonUntouchedOut:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="Wv5-tN-hL4"/>
+                                                            <segue destination="FSk-Ib-t3X" kind="presentation" id="9lR-yg-HYD"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -829,6 +830,63 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-286.875" y="-118.30985915492958"/>
+        </scene>
+        <!--About Us View-->
+        <scene sceneID="egi-FU-C93">
+            <objects>
+                <viewController id="FSk-Ib-t3X" customClass="AboutUsView" customModule="KPI_Rozklad" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="neP-vq-kar"/>
+                        <viewControllerLayoutGuide type="bottom" id="RDj-yz-kFd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JrJ-3v-Sma">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYs-Gg-xNp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRB-yh-cnl">
+                                        <rect key="frame" x="113" y="20" width="95" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="95" id="3sm-W6-6kb"/>
+                                            <constraint firstAttribute="height" constant="44" id="v5R-Zo-dNd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQm-Xy-Bgf">
+                                        <rect key="frame" x="8" y="20" width="46" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dismissAboutView" destination="FSk-Ib-t3X" eventType="touchUpInside" id="gDC-V8-Y9C"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.15686274509803921" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KRB-yh-cnl" firstAttribute="centerX" secondItem="SYs-Gg-xNp" secondAttribute="centerX" id="eFR-n2-yuF"/>
+                                    <constraint firstAttribute="bottom" secondItem="KRB-yh-cnl" secondAttribute="bottom" id="sKd-nJ-Eom"/>
+                                    <constraint firstAttribute="height" constant="64" id="u9M-4J-ur9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SYs-Gg-xNp" secondAttribute="trailing" id="BWJ-bC-dI2"/>
+                            <constraint firstItem="SYs-Gg-xNp" firstAttribute="top" secondItem="JrJ-3v-Sma" secondAttribute="top" id="GZt-ag-zFm"/>
+                            <constraint firstItem="SYs-Gg-xNp" firstAttribute="leading" secondItem="JrJ-3v-Sma" secondAttribute="leading" id="SMh-WK-TWM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fKX-Uc-MSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-286.875" y="596.83098591549299"/>
         </scene>
     </scenes>
     <resources>

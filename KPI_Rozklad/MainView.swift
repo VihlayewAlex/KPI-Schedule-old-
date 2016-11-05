@@ -279,9 +279,10 @@ class MainView: UIViewController {
         })
     }
     @IBAction func menuAboutUsButtonUntouched(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             sender.layer.opacity = 1.0
             self.aboutUsImage.layer.opacity = 1.0
+            self.mainContentView.frame.origin.x = 0
         })
     }
     @IBAction func menuAboutUsButtonUntouchedOut(_ sender: UIButton) {

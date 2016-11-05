@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA9618E71DCE914200D233D2 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9618E61DCE914200D233D2 /* AboutUsView.swift */; };
 		FAF218641DCBF09000B1F684 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF218611DCBF09000B1F684 /* SwiftyJSON.swift */; };
 		FAF218651DCBF09000B1F684 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF218621DCBF09000B1F684 /* APIData.swift */; };
 		FAF218661DCBF09000B1F684 /* APICore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF218631DCBF09000B1F684 /* APICore.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA9618E61DCE914200D233D2 /* AboutUsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		FAF218601DCBEB6000B1F684 /* KPI_Rozklad-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPI_Rozklad-Bridging-Header.h"; sourceTree = "<group>"; };
 		FAF218611DCBF09000B1F684 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		FAF218621DCBF09000B1F684 /* APIData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF896881DC6028E007780BC /* MainView.swift */,
+				FA9618E61DCE914200D233D2 /* AboutUsView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				FAF896871DC6028E007780BC /* AppDelegate.swift in Sources */,
 				FAF218651DCBF09000B1F684 /* APIData.swift in Sources */,
 				FAF218641DCBF09000B1F684 /* SwiftyJSON.swift in Sources */,
+				FA9618E71DCE914200D233D2 /* AboutUsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
