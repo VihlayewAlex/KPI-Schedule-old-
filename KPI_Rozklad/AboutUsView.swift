@@ -14,21 +14,31 @@ class AboutUsView: UIViewController {
         return .lightContent
     }
     
+    
+    @IBOutlet weak var BGImageView: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.BGImageView.layer.opacity = 1
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.2, delay: 0.1, animations: { () -> Void in
+            self.BGImageView.layer.opacity = 0.2
+        })
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    
-    @IBAction func dismissAboutView() {
-        self.dismiss(animated: true, completion: nil)
-    }
     
 
 }
