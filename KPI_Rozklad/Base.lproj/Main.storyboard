@@ -95,6 +95,7 @@
                                                             <action selector="menuScheduleButtonTouched:" destination="BYZ-38-t0r" eventType="touchDown" id="XmV-NI-osn"/>
                                                             <action selector="menuScheduleButtonUntouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6as-UO-2Ur"/>
                                                             <action selector="menuScheduleButtonUntouchedOut:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="nda-EV-vpV"/>
+                                                            <segue destination="zXg-sN-Gf0" kind="show" id="Zib-AL-lun"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -211,6 +212,7 @@
                                                             <action selector="menuSettingsButtonTouched:" destination="BYZ-38-t0r" eventType="touchDown" id="v3i-rH-uCN"/>
                                                             <action selector="menuSettingsButtonUntouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6ly-mt-gOE"/>
                                                             <action selector="menuSettingsButtonUntouchedOut:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="ePX-CN-EVo"/>
+                                                            <segue destination="rzB-7G-Rut" kind="show" id="6Dp-0X-3cE"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -354,21 +356,11 @@
                                                                 <action selector="menuShowButtonTouched" destination="BYZ-38-t0r" eventType="touchUpInside" id="KcA-hM-HfW"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GL0-JF-aOj">
-                                                            <rect key="frame" x="266" y="20" width="54" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="54" id="Uyd-co-pLH"/>
-                                                                <constraint firstAttribute="height" constant="44" id="ibX-NQ-SaU"/>
-                                                            </constraints>
-                                                            <state key="normal" image="Sync"/>
-                                                        </button>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="4IQ-xb-kyl" secondAttribute="bottom" id="1hM-mn-9As"/>
                                                         <constraint firstItem="4IQ-xb-kyl" firstAttribute="centerX" secondItem="Bs1-cs-nMp" secondAttribute="centerX" id="JrY-in-6fd"/>
                                                         <constraint firstAttribute="bottom" secondItem="f4e-ae-gW9" secondAttribute="bottom" id="Va4-wS-YlB"/>
-                                                        <constraint firstAttribute="trailing" secondItem="GL0-JF-aOj" secondAttribute="trailing" id="hFe-ze-zpE"/>
-                                                        <constraint firstAttribute="bottom" secondItem="GL0-JF-aOj" secondAttribute="bottom" id="nIr-3O-O7j"/>
                                                         <constraint firstItem="f4e-ae-gW9" firstAttribute="leading" secondItem="Bs1-cs-nMp" secondAttribute="leading" id="ziE-Zk-aWA"/>
                                                     </constraints>
                                                 </view>
@@ -513,6 +505,7 @@
                                                                 <connections>
                                                                     <action selector="seeAllTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="XKq-zM-uEg"/>
                                                                     <action selector="seeAllTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="apY-OH-lbS"/>
+                                                                    <segue destination="zXg-sN-Gf0" kind="show" id="HfE-fz-lYE"/>
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wwj-2O-Rn9">
@@ -818,7 +811,6 @@
                         <outlet property="scheduleImage" destination="tW7-jx-fby" id="mgo-gD-lmZ"/>
                         <outlet property="seeAllButton" destination="J49-hL-PiM" id="g95-xx-XGy"/>
                         <outlet property="settingsImage" destination="Xbs-i6-X27" id="sXr-WI-WzD"/>
-                        <outlet property="syncButton" destination="GL0-JF-aOj" id="Ew1-un-LAM"/>
                         <outlet property="tasksImage" destination="qIp-bE-hqg" id="THt-09-xDs"/>
                         <outlet property="teachersImage" destination="D0p-LV-bRe" id="aTP-xU-Lje"/>
                     </connections>
@@ -832,6 +824,34 @@
             </objects>
             <point key="canvasLocation" x="710.625" y="-118.30985915492958"/>
         </scene>
+        <!--Schedule-->
+        <scene sceneID="gyY-mF-V8y">
+            <objects>
+                <tableViewController title="Schedule" id="zXg-sN-Gf0" customClass="ScheduleView" customModule="KPI_Rozklad" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cQN-KH-Qeo">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5u5-VH-6Oa">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5u5-VH-6Oa" id="e8g-Eg-q4s">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zXg-sN-Gf0" id="659-Gs-9J6"/>
+                            <outlet property="delegate" destination="zXg-sN-Gf0" id="ndr-9x-8v2"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6kF-He-ohV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1556" y="-118"/>
+        </scene>
         <!--About us-->
         <scene sceneID="egi-FU-C93">
             <objects>
@@ -844,9 +864,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="6sU-Qs-Ypx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="6sU-Qs-Ypx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We are KPI KEK-team :D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKU-2A-ZgN">
+                                <rect key="frame" x="68" y="242" width="184" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -862,7 +889,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKX-Uc-MSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710.625" y="630.63380281690138"/>
+            <point key="canvasLocation" x="368" y="713"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="aJw-37-VZJ">
+            <objects>
+                <tableViewController title="Settings" id="rzB-7G-Rut" customClass="SettingsView" customModule="KPI_Rozklad" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rWa-IQ-bbB">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Ahz-Xa-lFg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IVA-x8-zbq">
+                                        <rect key="frame" x="0.0" y="35" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IVA-x8-zbq">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="rzB-7G-Rut" id="naT-2x-Fj6"/>
+                            <outlet property="delegate" destination="rzB-7G-Rut" id="dLf-IJ-dYg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8nk-Au-Pnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="712"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ch3-Ro-vay">
@@ -890,7 +949,6 @@
         <image name="Menu" width="100" height="100"/>
         <image name="Note" width="100" height="100"/>
         <image name="Settings" width="100" height="100"/>
-        <image name="Sync" width="100" height="100"/>
         <image name="Teachers" width="100" height="100"/>
         <image name="Timetable" width="100" height="100"/>
         <image name="ToDo" width="100" height="100"/>
@@ -901,4 +959,7 @@
         <image name="line_center" width="150" height="700"/>
         <image name="line_top" width="150" height="440"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Zib-AL-lun"/>
+    </inferredMetricsTieBreakers>
 </document>

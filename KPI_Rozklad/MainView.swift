@@ -23,8 +23,6 @@ class MainView: UIViewController {
     // NAVIGATION BAR
         // Navigation button for menu opening
         @IBOutlet weak var menuButton: UIButton!
-        // Sync button
-        @IBOutlet weak var syncButton: UIButton!
     
     // MENU
         // Group name box
@@ -65,13 +63,15 @@ class MainView: UIViewController {
     @IBOutlet weak var seeAllButton: UIButton!
     var seeAllIsHighlighted = false
     
+    
+    
+    
     // When view is actualy loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Expanding button reaction area with insets
         menuButton.imageEdgeInsets = UIEdgeInsetsMake(10, 15, 10, 15)
-        syncButton.imageEdgeInsets = UIEdgeInsetsMake(8, 13, 8, 13)
         
         // Setting ADD BUTTON view's layer properties
         addTaskView.layer.cornerRadius = 4
@@ -95,7 +95,6 @@ class MainView: UIViewController {
         seeAllButton.layer.cornerRadius = seeAllButton.frame.height/2
         seeAllButton.layer.borderColor = UIColor.white.cgColor
         seeAllButton.layer.borderWidth = 1
-        
         
         
         
@@ -171,6 +170,10 @@ class MainView: UIViewController {
         fastScheduleListGradient.colors = [fastScheduleListColor1,fastScheduleListColor2,fastScheduleListColor3]
         fastScheduleListGradient.locations = [0.0,0.3,1.0]
         fastScheduleListBg.layer.addSublayer(fastScheduleListGradient)
+        
+        
+        
+        
     }
     
     
@@ -297,7 +300,6 @@ class MainView: UIViewController {
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
             sender.layer.opacity = 1.0
             self.aboutUsImage.layer.opacity = 1.0
-            self.mainContentView.frame.origin.x = 0
         })
     }
     @IBAction func menuAboutUsButtonUntouchedOut(_ sender: UIButton) {
@@ -394,6 +396,9 @@ class MainView: UIViewController {
             //Performing translation
             sender.setTranslation(CGPoint.zero, in: self.view)
             
+            
+            
+        
         }
         
         // Ended interaction
