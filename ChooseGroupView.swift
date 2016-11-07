@@ -1,5 +1,5 @@
 //
-//  ScheduleView.swift
+//  ChooseGroupView.swift
 //  KPI_Rozklad
 //
 //  Created by Alex on 11/7/16.
@@ -8,12 +8,16 @@
 
 import UIKit
 
-class ScheduleView: UITableViewController {
+class ChooseGroupView: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +25,16 @@ class ScheduleView: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
+    @IBAction func saveGroup(_ sender: UIBarButtonItem) {
+        // SAVE GROUP
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

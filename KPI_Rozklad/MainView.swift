@@ -14,6 +14,10 @@ class MainView: UIViewController {
         return .lightContent
     }
     
+    
+    // NAVIGATION BAR
+        var willHideBar = true
+    
     // ROOT VIEWS
         // Left menu root view
         @IBOutlet weak var menuView: UIView!
@@ -33,7 +37,6 @@ class MainView: UIViewController {
         @IBOutlet weak var notesImage: UIImageView!
         @IBOutlet weak var teachersImage: UIImageView!
         @IBOutlet weak var settingsImage: UIImageView!
-        @IBOutlet weak var aboutUsImage: UIImageView!
     
     // ADD TASK/NOTE BUTTONS
         // Add note
@@ -70,6 +73,8 @@ class MainView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         // Expanding button reaction area with insets
         menuButton.imageEdgeInsets = UIEdgeInsetsMake(10, 15, 10, 15)
         
@@ -105,13 +110,16 @@ class MainView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+        willHideBar = true
     }
     
     
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        super.viewWillDisappear(animated)
+        if willHideBar == true {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            super.viewWillDisappear(animated)
+        }
     }
     
     
@@ -290,26 +298,6 @@ class MainView: UIViewController {
     }
     
     
-    @IBAction func menuAboutUsButtonTouched(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            sender.layer.opacity = 0.2
-            self.aboutUsImage.layer.opacity = 0.2
-        })
-    }
-    @IBAction func menuAboutUsButtonUntouched(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            sender.layer.opacity = 1.0
-            self.aboutUsImage.layer.opacity = 1.0
-        })
-    }
-    @IBAction func menuAboutUsButtonUntouchedOut(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            sender.layer.opacity = 1.0
-            self.aboutUsImage.layer.opacity = 1.0
-        })
-    }
-    
-    
     
     
     
@@ -463,6 +451,7 @@ class MainView: UIViewController {
     }
     @IBAction func addTaskTouchUpInside(_ sender: UIButton) {
         addTaskButtonIsHighlighted = false
+        willHideBar = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
             self.addTaskView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.25)
         })
@@ -478,6 +467,7 @@ class MainView: UIViewController {
     }
     @IBAction func addNoteTouchUpInside(_ sender: UIButton) {
         addNoteButtonIsHighlighted = false
+        willHideBar = false
         UIView.animate(withDuration: 0.1, delay: 0.1, animations: { () -> Void in
             self.addNoteView.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.25)
         })
