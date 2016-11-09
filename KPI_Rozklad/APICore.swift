@@ -8,12 +8,23 @@
 
 import Foundation
 
-let apiUrl = "http://api.rozklad.hub.kpi.ua/groups/497/timetable.json"
 
-func getJSONData(urlString: String) -> APIData {
-    let schedule = APIData()
+// GENERATING GROUP SCHEDULE URL
+// MUST RECEIVE PROPER GROUP ID!!!
+func getGroupScheduleURL(forGroupWithID id: Int) -> URL {
+    let urlString = "http://api.rozklad.hub.kpi.ua/groups/\(id)/timetable.json"
+    let resultURL = URL(string: urlString)!
+    return resultURL
+}
+
+
+
+// RECEIVES URL, RETURNS SCHEDULE OBJECT
+// MUST RECEIVE PROPER URL!!!
+// RETURNS nil IF IT IS AN ERROR
+func getAPISchedule(fromURL url: URL) -> APISchedule? {
+    let schedule = APISchedule()
     
-    if let url = URL(string: urlString) {
         if let data = try? Data(contentsOf: url) {
             let json = JSON(data: data)
             
@@ -93,11 +104,29 @@ func getJSONData(urlString: String) -> APIData {
                                     }
                                     newDay.lessons.append(newLesson)
                                     
+                                } else {
+                                    // Creating lesson with exists = false property
+                                    let newLesson = APILesson()
+                                    newLesson.exists = false
+                                    // Addind day to array
+                                    newDay.lessons.append(newLesson)
                                 }
                             }
                             newWeek1.days.append(newDay)
+                        } else {
+                            // Creating day with exists = false property
+                            let newDay = APIDay()
+                            newDay.exists = false
+                            // Addind day to array
+                            newWeek1.days.append(newDay)
                         }
                     }
+                    schedule.weeks.append(newWeek1)
+                } else {
+                    // Creating week with exists = false property
+                    let newWeek1 = APIWeek()
+                    newWeek1.exists = false
+                    // Addind week to array
                     schedule.weeks.append(newWeek1)
                 }
                 
@@ -174,83 +203,98 @@ func getJSONData(urlString: String) -> APIData {
                                     }
                                     newDay.lessons.append(newLesson)
                                     
+                                } else {
+                                    // Creating lesson with exists = false property
+                                    let newLesson = APILesson()
+                                    newLesson.exists = false
+                                    // Addind day to array
+                                    newDay.lessons.append(newLesson)
                                 }
                             }
                             newWeek2.days.append(newDay)
+                        } else {
+                            // Creating day with exists = false property
+                            let newDay = APIDay()
+                            newDay.exists = false
+                            // Addind day to array
+                            newWeek2.days.append(newDay)
                         }
                     }
+                    schedule.weeks.append(newWeek2)
+                } else {
+                    // Creating week with exists = false property
+                    let newWeek2 = APIWeek()
+                    newWeek2.exists = false
+                    // Addind week to array
                     schedule.weeks.append(newWeek2)
                 }
 
                 
             }
             
+            return schedule
             
-        }
+        } else {
+            
+            return nil
+            
     }
     
-    return schedule
+    
 }
 
-let test_schedule = getJSONData(urlString: apiUrl)
 
 
-// DEBUG RUN
 
-/*
-for week in test_schedule.weeks {
-    print("WEEK \(week.number)")
-    for day in week.days {
-        print("DAY \(day.number)")
-        for lesson in day.lessons {
-            print("\t[\(lesson.number)]: \(lesson.discipline.full_name)")
-            switch lesson.type {
-                case 0:
-                print("\t\tТип: Лекция")
-                case 1:
-                print("\t\tТип: Практика")
-                case 2:
-                print("\t\tТип: Лабораторная")
-                default:
-                print("\t\tТип: ?")
-            }
-            for teacher in lesson.teachers {
-                print("\t\tПреподаватель: \(teacher.full_name)")
-            }
-            print("\t\tМесто:")
-            for room in lesson.rooms {
-                print("\t\t\t\(room.name)-\(room.building.name)")
-                print("\t\t\tШирота: \(room.building.latitude) Долгота: \(room.building.longitude)")
-            }
-            print("\t\tГруппы:")
-            for group in lesson.groups {
-                print("\t\t\t\(group.name):")
-                switch group.okr {
-                case 0:
-                    print("\t\t\t\tокр: Бакалавр")
-                case 1:
-                    print("\t\t\t\tокр: Магистр")
-                case 2:
-                    print("\t\t\t\tокр: Специалист")
-                default:
-                    print("\t\t\t\tокр: ?")
-                }
-                switch group.type {
-                case 0:
-                    print("\t\t\t\tформа обучения: Дневная")
-                case 1:
-                    print("\t\t\t\tформа обучения: Заочная")
-                default:
-                    print("\t\t\t\tформа обучения: ?")
-                }
-            }
-            print("\n")
+// GETTING OBJECTS FROM APISchedule OBJECT
+func getAPIWeek(fromAPISchedule schedule: APISchedule, weekNumber week: Int) -> APIWeek {
+    return schedule.weeks[week]
+}
+
+func getAPIDay(fromAPISchedule schedule: APISchedule, weekNumber week: Int, dayNumber day: Int) -> APIDay {
+    return schedule.weeks[week].days[day]
+}
+
+func getAPILesson(fromAPISchedule schedule: APISchedule, weekNumber week: Int, dayNumber day: Int, lessonNumber lesson: Int) -> APILesson {
+    return schedule.weeks[week].days[day].lessons[lesson]
+}
+
+
+
+
+// GETTING SCHEDULE OBJECTS COUNT
+func getWeeksCount(fromAPISchedule schedule: APISchedule) -> Int {
+    var num = 0
+    for week in schedule.weeks {
+        if week.exists == true {
+            num += 1
         }
-        print("\n\n")
     }
-    print("\n\n")
+    return num
 }
 
-*/
+func getDaysCount(fromAPISchedule schedule: APISchedule, weekNumber week: Int) -> Int {
+    var num = 0
+    for day in schedule.weeks[week].days {
+        if day.exists == true {
+            num += 1
+        }
+    }
+    return num
+}
+
+func getLessonsCount(fromAPISchedule schedule: APISchedule, weekNumber week: Int, dayNumber day: Int) -> Int {
+    var num = 7
+    for lesson in schedule.weeks[week].days[day].lessons.reversed() {
+        if lesson.exists == false {
+            num -= 1
+        } else {
+            break
+        }
+    }
+    return num
+}
+
+
 
 
