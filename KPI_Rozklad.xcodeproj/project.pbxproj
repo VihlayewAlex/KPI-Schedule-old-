@@ -95,8 +95,8 @@
 		FAD9D2571DC7A3FA00AF326B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAF218631DCBF09000B1F684 /* APICore.swift */,
 				FAEECDD31DD3959500F2476C /* APICache.swift */,
+				FAF218631DCBF09000B1F684 /* APICore.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

@@ -19,6 +19,12 @@ func getGroupScheduleURL(forGroupWithID id: Int) -> URL {
 
 
 
+
+
+
+
+
+
 // RECEIVES URL, RETURNS SCHEDULE OBJECT
 // MUST RECEIVE PROPER URL!!!
 // RETURNS nil IF IT IS AN ERROR
@@ -166,7 +172,7 @@ func getAPISchedule(fromURL url: URL) -> APISchedule? {
                                     newDiscipline.full_name = lesson["discipline"]["full_name"].stringValue
                                     newLesson.discipline = newDiscipline
                                     
-                                    if !(lesson["groups"].isEmpty) {
+                                    if (lesson["groups"].isEmpty) {
                                         for group in lesson["groups"].arrayValue {
                                             let newGroup = APIGroup()
                                             newGroup.id = group["id"].intValue
@@ -238,6 +244,10 @@ func getAPISchedule(fromURL url: URL) -> APISchedule? {
                 
             }
             
+            DispatchQueue.main.async {
+                UserDefaults.standard.set(data, forKey: "schedule")
+            }
+            
             return schedule
             
         } else {
@@ -248,6 +258,9 @@ func getAPISchedule(fromURL url: URL) -> APISchedule? {
     
     
 }
+
+
+
 
 
 
@@ -264,6 +277,9 @@ func getAPIDay(fromAPISchedule schedule: APISchedule, weekNumber week: Int, dayN
 func getAPILesson(fromAPISchedule schedule: APISchedule, weekNumber week: Int, dayNumber day: Int, lessonNumber lesson: Int) -> APILesson {
     return schedule.weeks[week].days[day].lessons[lesson]
 }
+
+
+
 
 
 
@@ -300,6 +316,14 @@ func getLessonsCount(fromAPISchedule schedule: APISchedule, weekNumber week: Int
     }
     return num
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -19,6 +19,8 @@ class ScheduleView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // Setting view's style
         let backgroundImage = UIImage(named: "BG_BLR.png")
         let imageView = UIImageView(image: backgroundImage)
@@ -26,10 +28,15 @@ class ScheduleView: UITableViewController {
         self.tableView.backgroundView = imageView
         
         
+        
         // Preparing content
         isLoadingSchedule = true
         DispatchQueue.global(qos: .background).async {
             // Get schedule
+            
+        self.schedule = getCachedSchedule()
+        if self.schedule == nil {
+            
             print("\nDEBUG: 'getAPISchedule' method called.\n")
             self.schedule = getAPISchedule(fromURL: getGroupScheduleURL(forGroupWithID: 497))
             print("\nDEBUG: 'getAPISchedule' response is assigned to a schedule variable.\n")
@@ -44,12 +51,15 @@ class ScheduleView: UITableViewController {
                 
             }
             
+        }
+        
             // Sync and update UI
             DispatchQueue.main.async {
                 self.isLoadingSchedule = false
                 self.tableView.reloadData()
             }
         }
+        
         
         
     }
