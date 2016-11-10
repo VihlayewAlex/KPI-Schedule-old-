@@ -30,12 +30,14 @@ class ScheduleView: UITableViewController {
         isLoadingSchedule = true
         DispatchQueue.global(qos: .background).async {
             // Get schedule
+            print("\nDEBUG: 'getAPISchedule' method called.\n")
             self.schedule = getAPISchedule(fromURL: getGroupScheduleURL(forGroupWithID: 497))
+            print("\nDEBUG: 'getAPISchedule' response is assigned to a schedule variable.\n")
             
             if self.schedule == nil {
                 
-                let alert = UIAlertController(title: "Ebat' hujna!", message: "cheto internet ne tort, bratunya(", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Pechalka'", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
+                let alert = UIAlertController(title: "No connection", message: "Cannot load schedule due to no internet access. Reconnect and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
                     _ = self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true, completion: nil)

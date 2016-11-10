@@ -23,10 +23,16 @@ func getGroupScheduleURL(forGroupWithID id: Int) -> URL {
 // MUST RECEIVE PROPER URL!!!
 // RETURNS nil IF IT IS AN ERROR
 func getAPISchedule(fromURL url: URL) -> APISchedule? {
+    
+    print("\nDEBUG: 'getAPISchedule' method started running.\n")
+    
     let schedule = APISchedule()
     
         if let data = try? Data(contentsOf: url) {
+            print("\nDEBUG: Data is loaded.\n")
+            
             let json = JSON(data: data)
+            print("\nDEBUG: Data is in JSON now. Serializing started.\n")
             
             // Parsing schedule
             if let jsonData = json["data"].dictionary {
