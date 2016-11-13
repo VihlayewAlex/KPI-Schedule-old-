@@ -44,7 +44,7 @@
 		FAF218611DCBF09000B1F684 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		FAF218621DCBF09000B1F684 /* APISchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISchedule.swift; sourceTree = "<group>"; };
 		FAF218631DCBF09000B1F684 /* APICore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICore.swift; sourceTree = "<group>"; };
-		FAF896831DC6028E007780BC /* KPI_Rozklad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KPI_Rozklad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAF896831DC6028E007780BC /* KPI Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KPI Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF896861DC6028E007780BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF896881DC6028E007780BC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FAF8968B1DC6028E007780BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		FAF8967A1DC6028E007780BC = {
 			isa = PBXGroup;
 			children = (
-				FAF896851DC6028E007780BC /* KPI_Rozklad */,
+				FAF896851DC6028E007780BC /* KPI Schedule */,
 				FAF896841DC6028E007780BC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,12 +112,12 @@
 		FAF896841DC6028E007780BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FAF896831DC6028E007780BC /* KPI_Rozklad.app */,
+				FAF896831DC6028E007780BC /* KPI Schedule.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FAF896851DC6028E007780BC /* KPI_Rozklad */ = {
+		FAF896851DC6028E007780BC /* KPI Schedule */ = {
 			isa = PBXGroup;
 			children = (
 				FAD9D2571DC7A3FA00AF326B /* Controller */,
@@ -130,15 +130,15 @@
 				FAF896951DC6028E007780BC /* Info.plist */,
 				FAF8968D1DC6028E007780BC /* KPI_Rozklad.xcdatamodeld */,
 			);
-			path = KPI_Rozklad;
+			path = "KPI Schedule";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FAF896821DC6028E007780BC /* KPI_Rozklad */ = {
+		FAF896821DC6028E007780BC /* KPI Schedule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAF896981DC6028E007780BC /* Build configuration list for PBXNativeTarget "KPI_Rozklad" */;
+			buildConfigurationList = FAF896981DC6028E007780BC /* Build configuration list for PBXNativeTarget "KPI Schedule" */;
 			buildPhases = (
 				FAF8967F1DC6028E007780BC /* Sources */,
 				FAF896801DC6028E007780BC /* Frameworks */,
@@ -148,9 +148,9 @@
 			);
 			dependencies = (
 			);
-			name = KPI_Rozklad;
+			name = "KPI Schedule";
 			productName = KPI_Rozklad;
-			productReference = FAF896831DC6028E007780BC /* KPI_Rozklad.app */;
+			productReference = FAF896831DC6028E007780BC /* KPI Schedule.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FAF8967E1DC6028E007780BC /* Build configuration list for PBXProject "KPI_Rozklad" */;
+			buildConfigurationList = FAF8967E1DC6028E007780BC /* Build configuration list for PBXProject "KPI Schedule" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -184,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FAF896821DC6028E007780BC /* KPI_Rozklad */,
+				FAF896821DC6028E007780BC /* KPI Schedule */,
 			);
 		};
 /* End PBXProject section */
@@ -348,9 +348,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 22U234HGU8;
-				INFOPLIST_FILE = KPI_Rozklad/Info.plist;
+				INFOPLIST_FILE = "KPI Schedule/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vihlayew.alex.KPI-Rozklad";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vihlayew.alex.KPI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -364,9 +364,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 22U234HGU8;
-				INFOPLIST_FILE = KPI_Rozklad/Info.plist;
+				INFOPLIST_FILE = "KPI Schedule/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vihlayew.alex.KPI-Rozklad";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vihlayew.alex.KPI-Schedule";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -376,7 +376,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FAF8967E1DC6028E007780BC /* Build configuration list for PBXProject "KPI_Rozklad" */ = {
+		FAF8967E1DC6028E007780BC /* Build configuration list for PBXProject "KPI Schedule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAF896961DC6028E007780BC /* Debug */,
@@ -385,7 +385,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FAF896981DC6028E007780BC /* Build configuration list for PBXNativeTarget "KPI_Rozklad" */ = {
+		FAF896981DC6028E007780BC /* Build configuration list for PBXNativeTarget "KPI Schedule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAF896991DC6028E007780BC /* Debug */,

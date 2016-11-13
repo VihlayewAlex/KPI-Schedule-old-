@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:KPI_Rozklad.xcodeproj">
+      location = "self:/Volumes/DATA/Xcode/KPI_Rozklad/KPI Schedule.xcodeproj">
    </FileRef>
 </Workspace>
