@@ -9,17 +9,6 @@
 import Foundation
 
 
-// GENERATING GROUP SCHEDULE URL
-// MUST RECEIVE PROPER GROUP ID!!!
-func getGroupScheduleURL(forGroupWithID id: Int) -> URL {
-    let urlString = "http://api.rozklad.hub.kpi.ua/groups/\(id)/timetable.json"
-    let resultURL = URL(string: urlString)!
-    return resultURL
-}
-
-
-
-
 
 
 
@@ -28,7 +17,10 @@ func getGroupScheduleURL(forGroupWithID id: Int) -> URL {
 // RECEIVES URL, RETURNS SCHEDULE OBJECT
 // MUST RECEIVE PROPER URL!!!
 // RETURNS nil IF IT IS AN ERROR
-func getAPISchedule(fromURL url: URL) -> APISchedule? {
+func getAPISchedule(forID id: Int) -> APISchedule? {
+    
+    let urlString = "http://api.rozklad.hub.kpi.ua/groups/\(id)/timetable.json"
+    let url = URL(string: urlString)!
     
     print("\nDEBUG: 'getAPISchedule' method started running.\n")
     
@@ -246,6 +238,7 @@ func getAPISchedule(fromURL url: URL) -> APISchedule? {
             
             DispatchQueue.main.async {
                 UserDefaults.standard.set(data, forKey: "schedule")
+                UserDefaults.standard.set(id, forKey: "cachedGroupID")
             }
             
             return schedule
@@ -260,8 +253,70 @@ func getAPISchedule(fromURL url: URL) -> APISchedule? {
 }
 
 
+// RETURNS ARRAY OF APIGroup OBJECT
+// RETURNS nil IF IT IS A CONNECTION ERROR
+func getGroupsList() -> [APIGroup]? {
+    var url = URL(string: "http://api.rozklad.hub.kpi.ua/groups/?limit=100")!
+    var groupsList: [APIGroup] = []
+    
+    
+    repeat {
+        
+        let groupsFragmentResponse = getGroupFragmentResponse(fromURL: url)
+        if groupsFragmentResponse.0 != nil {
+            groupsList += (groupsFragmentResponse.0)!
+        } else {
+            return nil
+        }
+        
+        if groupsFragmentResponse.1 != nil {
+            url = (groupsFragmentResponse.1)!
+        } else {
+            return groupsList
+        }
+        
+    } while (getGroupFragmentResponse(fromURL: url).1 != nil)
+    
+    
+    return groupsList
+}
 
-
+func getGroupFragmentResponse(fromURL url: URL) -> ([APIGroup]?,URL?) {
+    var groupsListFragment: [APIGroup] = []
+    var nextFragmentURL: URL? = nil
+    
+    
+    if let data = try? Data(contentsOf: url) {
+        
+        let json = JSON(data: data)
+        
+        if let groupsArray = json["results"].array {
+            
+            for group in groupsArray {
+                let newGroup = APIGroup()
+                newGroup.id = group["id"].intValue
+                newGroup.name = group["name"].stringValue
+                newGroup.okr = group["okr"].intValue
+                newGroup.type = group["type"].intValue
+                
+                groupsListFragment.append(newGroup)
+            }
+            
+        }
+        
+        if let next = json["next"].string {
+            nextFragmentURL = URL(string: next)!
+        }
+        
+        return (groupsListFragment,nextFragmentURL)
+        
+        
+    } else {
+        return (nil,nil)
+    }
+    
+    
+}
 
 
 
@@ -297,16 +352,20 @@ func getWeeksCount(fromAPISchedule schedule: APISchedule) -> Int {
 
 func getDaysCount(fromAPISchedule schedule: APISchedule, weekNumber week: Int) -> Int {
     var num = 0
+    num = schedule.weeks[week].days.count
+    /*
     for day in schedule.weeks[week].days {
         if day.exists == true {
             num += 1
         }
     }
+    */
     return num
 }
 
 func getLessonsCount(fromAPISchedule schedule: APISchedule, weekNumber week: Int, dayNumber day: Int) -> Int {
     var num = 7
+    if getAPIDay(fromAPISchedule: schedule, weekNumber: week, dayNumber: day).exists {
     for lesson in schedule.weeks[week].days[day].lessons.reversed() {
         if lesson.exists == false {
             num -= 1
@@ -315,6 +374,9 @@ func getLessonsCount(fromAPISchedule schedule: APISchedule, weekNumber week: Int
         }
     }
     return num
+    } else {
+        return 0
+    }
 }
 
 

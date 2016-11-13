@@ -12,6 +12,10 @@ import Foundation
 
 
 func getCachedSchedule() -> APISchedule? {
+    
+    if (UserDefaults.standard.value(forKey: "cachedGroupID") != nil) && (UserDefaults.standard.value(forKey: "groupID") != nil) {
+    if UserDefaults.standard.value(forKey: "cachedGroupID") as! Int == UserDefaults.standard.value(forKey: "groupID") as! Int {
+    
     if let data = UserDefaults.standard.value(forKey: "schedule") {
     let json = JSON(data: data as! Data)
     let schedule = APISchedule()
@@ -225,4 +229,12 @@ func getCachedSchedule() -> APISchedule? {
     } else {
         return nil
     }
+    
+    } else {
+        return nil
+    }
+    } else {
+        return nil
+    }
+    
 }

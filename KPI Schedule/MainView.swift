@@ -31,6 +31,7 @@ class MainView: UIViewController {
     // MENU
         // Group name box
         @IBOutlet weak var groupRectangle: UIView!
+        @IBOutlet weak var groupLabel: UILabel!
         // Menu button images
         @IBOutlet weak var scheduleImage: UIImageView!
         @IBOutlet weak var tasksImage: UIImageView!
@@ -112,6 +113,11 @@ class MainView: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
         willHideBar = true
+        
+        if UserDefaults.standard.value(forKey: "groupNAME") != nil {
+            groupLabel.text = UserDefaults.standard.value(forKey: "groupNAME") as! String?
+        }
+        
     }
     
     

@@ -20,6 +20,10 @@ class ScheduleView: UITableViewController {
         super.viewDidLoad()
         
         
+        if UserDefaults.standard.value(forKey: "groupNAME") != nil {
+            title = UserDefaults.standard.value(forKey: "groupNAME") as! String?
+        }
+        
         
         // Setting view's style
         let backgroundImage = UIImage(named: "BG_BLR.png")
@@ -38,7 +42,7 @@ class ScheduleView: UITableViewController {
         if self.schedule == nil {
             
             print("\nDEBUG: 'getAPISchedule' method called.\n")
-            self.schedule = getAPISchedule(fromURL: getGroupScheduleURL(forGroupWithID: 497))
+            self.schedule = getAPISchedule(forID: UserDefaults.standard.value(forKey: "groupID") as! Int)
             print("\nDEBUG: 'getAPISchedule' response is assigned to a schedule variable.\n")
             
             if self.schedule == nil {
@@ -100,7 +104,7 @@ class ScheduleView: UITableViewController {
             return "   THURSDAY"
         case 4:
             return "   FRIDAY"
-        case 1:
+        case 5:
             return "   SATURDAY"
         default:
             return "   SUNDAY"
