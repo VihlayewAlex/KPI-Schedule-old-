@@ -30,7 +30,14 @@ class SettingsView: UITableViewController {
     }
     
     @IBAction func clearCache() {
-        UserDefaults.standard.removeObject(forKey: "schedule")
+        let clearConfirmView = UIAlertController(title: "Are you sure?", message: "All schedule data will be erased!", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let deleteConfirmAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { (ACTION) -> Void in
+            UserDefaults.standard.removeObject(forKey: "schedule")
+        })
+        let cancelConfirmAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        clearConfirmView.addAction(deleteConfirmAction)
+        clearConfirmView.addAction(cancelConfirmAction)
+        self.present(clearConfirmView, animated: true, completion: nil)
     }
 
 }
