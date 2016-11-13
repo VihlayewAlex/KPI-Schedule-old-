@@ -87,6 +87,33 @@ class ScheduleView: UITableViewController {
             return 0
         }
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "   MONDAY"
+        case 1:
+            return "   TUESDAY"
+        case 2:
+            return "   WEDNESDAY"
+        case 3:
+            return "   THURSDAY"
+        case 4:
+            return "   FRIDAY"
+        case 1:
+            return "   SATURDAY"
+        default:
+            return "   SUNDAY"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white //make the text white
+        header.textLabel?.font = header.textLabel?.font.withSize(17)
+        header.alpha = 0.7 //make the header transparent
+
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if schedule != nil {
@@ -110,19 +137,18 @@ class ScheduleView: UITableViewController {
             let lesson = getAPILesson(fromAPISchedule: schedule, weekNumber: weekNumber, dayNumber: indexPath.section, lessonNumber: indexPath.row)
             cell.noLessonLabel.text = ""
             
-            cell.lectionName.text = lesson.discipline.name
+            cell.lectionName.text = "\(lesson.number). " + lesson.discipline.name
             
             if lesson.teachers.count != 0 {
-                cell.teacherName.text = lesson.teachers[0].short_name
+                cell.teacherName.text = "  " + lesson.teachers[0].short_name
             } else {
-                cell.teacherName.text = "---"
+                cell.teacherName.text = "  ---"
             }
             
             if lesson.rooms.count != 0 {
-                cell.auditoryNumber.text = lesson.rooms[0].name
-                cell.auditoryNumber.text = lesson.rooms[0].name + "-" + lesson.rooms[0].building.name
+                cell.auditoryNumber.text = "  " + lesson.rooms[0].name + "-" + lesson.rooms[0].building.name
             } else {
-                cell.auditoryNumber.text = "---"
+                cell.auditoryNumber.text = "  ---"
             }
             
             switch lesson.type {

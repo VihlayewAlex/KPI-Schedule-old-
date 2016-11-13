@@ -13,6 +13,7 @@ class SettingsView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.canCancelContentTouches = false
         
     }
 
@@ -21,13 +22,15 @@ class SettingsView: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
     // MARK: - Table view data source
     
-    
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    @IBAction func clearCache() {
+        UserDefaults.standard.removeObject(forKey: "schedule")
+    }
 
 }
