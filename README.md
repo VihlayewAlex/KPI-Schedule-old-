@@ -3,7 +3,18 @@ KPI_Rozklad is a NEW schedule, time-management and task application for students
 
 Prototype:
 
-<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/Main%20menu%20ios.png" width="300">
+<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4733.png" width="300">
+
+<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4733.png" width="300">
+
+<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4720.png" width="300">
+
+<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4718.png" width="300">
+
+<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4714.png" width="300">
+
+<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4716.png" width="300">
+
 
 This software is developed by a member of KPI IP-63 DEV CLUB
 
