@@ -5,8 +5,6 @@ Prototype:
 
 <img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4733.PNG" width="300">
 
-<img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4733.PNG" width="300">
-
 <img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4720.PNG" width="300">
 
 <img src="https://raw.githubusercontent.com/VihlayewAlex/KPI_Rozklad/master/readme_images/IMG_4718.PNG" width="300">
