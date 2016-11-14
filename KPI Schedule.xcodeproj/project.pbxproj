@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E6666F56A4E96176EC6709E /* Pods_KPI_Schedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 776074D55E8ED5BEC509BEC9 /* Pods_KPI_Schedule.framework */; };
 		FA1D86941DD0014600ACCDE3 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D86931DD0014600ACCDE3 /* ScheduleView.swift */; };
 		FA1D86961DD00FE900ACCDE3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D86951DD00FE900ACCDE3 /* SettingsView.swift */; };
 		FA6233C81DD279BB00833B83 /* ScheduleLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6233C71DD279BB00833B83 /* ScheduleLessonCell.swift */; };
@@ -30,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38E35AB39D5C07C2C0844B89 /* Pods-KPI Schedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KPI Schedule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KPI Schedule/Pods-KPI Schedule.debug.xcconfig"; sourceTree = "<group>"; };
+		776074D55E8ED5BEC509BEC9 /* Pods_KPI_Schedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KPI_Schedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B773A34C8A9F6D3593E490DC /* Pods-KPI Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KPI Schedule.release.xcconfig"; path = "Pods/Target Support Files/Pods-KPI Schedule/Pods-KPI Schedule.release.xcconfig"; sourceTree = "<group>"; };
 		FA1D86931DD0014600ACCDE3 /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		FA1D86951DD00FE900ACCDE3 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FA6233C71DD279BB00833B83 /* ScheduleLessonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleLessonCell.swift; sourceTree = "<group>"; };
@@ -59,12 +63,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6666F56A4E96176EC6709E /* Pods_KPI_Schedule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		92A726DCFD5568FB09EEBFF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				776074D55E8ED5BEC509BEC9 /* Pods_KPI_Schedule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D16E2463BF71CD839793AB79 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38E35AB39D5C07C2C0844B89 /* Pods-KPI Schedule.debug.xcconfig */,
+				B773A34C8A9F6D3593E490DC /* Pods-KPI Schedule.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FAD9D2551DC7A3EA00AF326B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +128,8 @@
 			children = (
 				FAF896851DC6028E007780BC /* KPI Schedule */,
 				FAF896841DC6028E007780BC /* Products */,
+				D16E2463BF71CD839793AB79 /* Pods */,
+				92A726DCFD5568FB09EEBFF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,9 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAF896981DC6028E007780BC /* Build configuration list for PBXNativeTarget "KPI Schedule" */;
 			buildPhases = (
+				099D285C2BDFED06FFBFD452 /* [CP] Check Pods Manifest.lock */,
 				FAF8967F1DC6028E007780BC /* Sources */,
 				FAF896801DC6028E007780BC /* Frameworks */,
 				FAF896811DC6028E007780BC /* Resources */,
+				2BD76FE955D052779D35F866 /* [CP] Embed Pods Frameworks */,
+				D2DB94EE9E3CBE8065FEC914 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,6 +228,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		099D285C2BDFED06FFBFD452 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2BD76FE955D052779D35F866 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KPI Schedule/Pods-KPI Schedule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2DB94EE9E3CBE8065FEC914 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KPI Schedule/Pods-KPI Schedule-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FAF8967F1DC6028E007780BC /* Sources */ = {
@@ -344,6 +419,7 @@
 		};
 		FAF896991DC6028E007780BC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38E35AB39D5C07C2C0844B89 /* Pods-KPI Schedule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -360,6 +436,7 @@
 		};
 		FAF8969A1DC6028E007780BC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B773A34C8A9F6D3593E490DC /* Pods-KPI Schedule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
