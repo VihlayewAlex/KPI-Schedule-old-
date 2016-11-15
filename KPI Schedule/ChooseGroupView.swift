@@ -9,10 +9,10 @@
 import UIKit
 
 class ChooseGroupView: UITableViewController {
-
     
-    var isLoadingGroups = false
-    var groupsList: [APIGroup]!
+    
+    
+    var groupsList: [APIGroup] = []
     var indexPathOfSelectedRow: IndexPath!
     var selectedRowGroupID: Int!
     var selectedRowGroupNAME: String!
@@ -20,50 +20,63 @@ class ChooseGroupView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         
-        // Preparing content
-        isLoadingGroups = true
         DispatchQueue.global(qos: .background).async {
             // Get schedule
             
+            var urlString = "http://api.rozklad.hub.kpi.ua/groups/?limit=50"
             
-            if self.groupsList == nil {
+            repeat {
                 
-                print("\nDEBUG: 'getGroupsList' method called.\n")
-                self.groupsList = getGroupsList()
-                print("\nDEBUG: 'getGroupsList' response is assigned to a groupsList variable.\n")
+                let groupsFragmentResponse = getGroupFragmentResponse(fromURLString: urlString)
                 
-                if self.groupsList == nil {
+                if (groupsFragmentResponse.0 != nil) {
                     
-                    let alert = UIAlertController(title: "No connection", message: "Cannot load groups due to no internet access. Reconnect and try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
-                        _ = self.navigationController?.popViewController(animated: true)
-                    }))
-                    self.present(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        self.groupsList += (groupsFragmentResponse.0)!
+                        self.tableView.reloadData()
+                    }
                     
+                } else {
+                    
+                    DispatchQueue.main.async {
+                        self.groupsList = []
+                    }
+                    
+                    break
                 }
                 
+                if groupsFragmentResponse.1 != nil {
+                    urlString = (groupsFragmentResponse.1)!
+                }
+                
+            } while (getGroupFragmentResponse(fromURLString: urlString).1 != nil)
+            
+            
+            print("\nDEBUG: Loading done\n")
+            
+            if self.groupsList.count == 0 {
+                
+                let alert = UIAlertController(title: "No connection", message: "Cannot load groups due to no internet access. Reconnect and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
             }
             
-            // Sync and update UI
-            DispatchQueue.main.async {
-                self.isLoadingGroups = false
-                self.tableView.reloadData()
-            }
-
+            
         }
         
         
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     
     @IBAction func saveGroup(_ sender: UIBarButtonItem) {
@@ -81,7 +94,7 @@ class ChooseGroupView: UITableViewController {
             self.present(alert, animated: true, completion: nil)
             
         }
-            
+        
         _ = self.navigationController?.popViewController(animated: true)
         
     }
@@ -90,31 +103,21 @@ class ChooseGroupView: UITableViewController {
     
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if groupsList != nil {
-            switch isLoadingGroups {
-            case true:
-                return 0
-            default:
-                return groupsList.count
-            }
-        } else {
-            return 0
-        }
+        return groupsList.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
-
+        
         cell.textLabel?.text = groupsList[indexPath.row].name
-
+        
         if indexPathOfSelectedRow != nil {
             if indexPathOfSelectedRow.row == indexPath.row {
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
@@ -122,10 +125,10 @@ class ChooseGroupView: UITableViewController {
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
         }
-            
+        
         return cell
     }
- 
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRowGroupID = groupsList[indexPath.row].id
@@ -137,6 +140,6 @@ class ChooseGroupView: UITableViewController {
         indexPathOfSelectedRow = indexPath
         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
     }
-
+    
     
 }

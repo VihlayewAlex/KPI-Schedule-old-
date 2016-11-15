@@ -69,6 +69,17 @@ class APIWeek {
     var days: [APIDay] = []
 }
 
-class APISchedule {
+class APISchedule/*: NSObject, NSCoding*/ {
     var weeks: [APIWeek] = []
+    
+    /* MUST BE IMPLEMENTED FOR DATA CACHING
+    required init(coder aDecoder: NSCoder) {
+        weeks = aDecoder.decodeObject(forKey: "weeks") as! [APIWeek]
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(weeks, forKey: "weeks")
+    }
+    */
+    
 }

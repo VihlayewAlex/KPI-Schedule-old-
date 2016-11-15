@@ -258,7 +258,7 @@ func getAPISchedule(forID id: Int) -> APISchedule? {
 }
 
 
-
+// PART OF getAPISchedule FUNCTION
 func makeAlamofireScheduleRequest(urlString: String, completion : @escaping (JSON?) -> ()) {
     
     
@@ -282,44 +282,20 @@ func makeAlamofireScheduleRequest(urlString: String, completion : @escaping (JSO
 
 
 
-// RETURNS ARRAY OF APIGroup OBJECT
-// RETURNS nil IF IT IS A CONNECTION ERROR
-func getGroupsList() -> [APIGroup]? {
-    var url = URL(string: "http://api.rozklad.hub.kpi.ua/groups/?limit=100")!
-    var groupsList: [APIGroup] = []
-    
-    
-    repeat {
-        
-        let groupsFragmentResponse = getGroupFragmentResponse(fromURL: url)
-        if groupsFragmentResponse.0 != nil {
-            groupsList += (groupsFragmentResponse.0)!
-        } else {
-            return nil
-        }
-        
-        if groupsFragmentResponse.1 != nil {
-            url = (groupsFragmentResponse.1)!
-        } else {
-            return groupsList
-        }
-        
-    } while (getGroupFragmentResponse(fromURL: url).1 != nil)
-    
-    
-    return groupsList
-}
-
-func getGroupFragmentResponse(fromURL url: URL) -> ([APIGroup]?,URL?) {
+func getGroupFragmentResponse(fromURLString urlString: String) -> ([APIGroup]?,String?) {
     var groupsListFragment: [APIGroup] = []
-    var nextFragmentURL: URL? = nil
+    var nextFragmentURLString: String? = nil
+    var json: JSON?
     
+    makeAlamofireGroupFragmentRequest(urlString: urlString) { response in
+        json = response
+        semaphore.signal()
+    }
     
-    if let data = try? Data(contentsOf: url) {
-        
-        let json = JSON(data: data)
-        
-        if let groupsArray = json["results"].array {
+    semaphore.wait()
+    
+    if json != nil {
+        if let groupsArray = json?["results"].array {
             
             for group in groupsArray {
                 let newGroup = APIGroup()
@@ -333,15 +309,35 @@ func getGroupFragmentResponse(fromURL url: URL) -> ([APIGroup]?,URL?) {
             
         }
         
-        if let next = json["next"].string {
-            nextFragmentURL = URL(string: next)!
+        if let next = json?["next"].string {
+            nextFragmentURLString = next
         }
         
-        return (groupsListFragment,nextFragmentURL)
-        
+        return (groupsListFragment,nextFragmentURLString)
         
     } else {
         return (nil,nil)
+    }
+    
+}
+
+
+
+func makeAlamofireGroupFragmentRequest(urlString: String, completion : @escaping (JSON?) -> ()) {
+    
+    
+    Alamofire.request(urlString).validate().responseJSON { response in
+        
+        switch response.result {
+        case .success(let value):
+            let json = JSON(value)
+            completion(json)
+            
+        case .failure(let error):
+            print(error)
+            completion(nil)
+        }
+        
     }
     
     

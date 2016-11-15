@@ -15,10 +15,10 @@
 		FAB810B91DD0D8CB0080791A /* TeachersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB810B81DD0D8CB0080791A /* TeachersView.swift */; };
 		FAB810BB1DD0D90E0080791A /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB810BA1DD0D90E0080791A /* TasksView.swift */; };
 		FAB810BD1DD0D9310080791A /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB810BC1DD0D9310080791A /* NotesView.swift */; };
-		FAB810C91DD114060080791A /* ChooseGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB810C81DD114060080791A /* ChooseGroupView.swift */; };
 		FAB810CB1DD1192D0080791A /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB810CA1DD1192D0080791A /* AddTaskView.swift */; };
 		FAB810CD1DD1272C0080791A /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB810CC1DD1272C0080791A /* AddNoteView.swift */; };
-		FAEECDD41DD3959500F2476C /* APICache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEECDD31DD3959500F2476C /* APICache.swift */; };
+		FAD810A41DDB99B50046F392 /* ChooseGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD810A31DDB99B50046F392 /* ChooseGroupView.swift */; };
+		FAE5E3501DDAEF020017E9B9 /* APICache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5E34F1DDAEF020017E9B9 /* APICache.swift */; };
 		FAF218641DCBF09000B1F684 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF218611DCBF09000B1F684 /* SwiftyJSON.swift */; };
 		FAF218651DCBF09000B1F684 /* APISchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF218621DCBF09000B1F684 /* APISchedule.swift */; };
 		FAF218661DCBF09000B1F684 /* APICore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF218631DCBF09000B1F684 /* APICore.swift */; };
@@ -41,10 +41,10 @@
 		FAB810B81DD0D8CB0080791A /* TeachersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachersView.swift; sourceTree = "<group>"; };
 		FAB810BA1DD0D90E0080791A /* TasksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		FAB810BC1DD0D9310080791A /* NotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
-		FAB810C81DD114060080791A /* ChooseGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseGroupView.swift; path = ../ChooseGroupView.swift; sourceTree = "<group>"; };
 		FAB810CA1DD1192D0080791A /* AddTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		FAB810CC1DD1272C0080791A /* AddNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
-		FAEECDD31DD3959500F2476C /* APICache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICache.swift; path = ../APICache.swift; sourceTree = "<group>"; };
+		FAD810A31DDB99B50046F392 /* ChooseGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGroupView.swift; sourceTree = "<group>"; };
+		FAE5E34F1DDAEF020017E9B9 /* APICache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICache.swift; sourceTree = "<group>"; };
 		FAF218611DCBF09000B1F684 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		FAF218621DCBF09000B1F684 /* APISchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISchedule.swift; sourceTree = "<group>"; };
 		FAF218631DCBF09000B1F684 /* APICore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICore.swift; sourceTree = "<group>"; };
@@ -106,10 +106,10 @@
 				FAB810B81DD0D8CB0080791A /* TeachersView.swift */,
 				FAB810BA1DD0D90E0080791A /* TasksView.swift */,
 				FAB810BC1DD0D9310080791A /* NotesView.swift */,
-				FAB810C81DD114060080791A /* ChooseGroupView.swift */,
 				FAB810CA1DD1192D0080791A /* AddTaskView.swift */,
 				FAB810CC1DD1272C0080791A /* AddNoteView.swift */,
 				FA6233C71DD279BB00833B83 /* ScheduleLessonCell.swift */,
+				FAD810A31DDB99B50046F392 /* ChooseGroupView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -117,8 +117,8 @@
 		FAD9D2571DC7A3FA00AF326B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAEECDD31DD3959500F2476C /* APICache.swift */,
 				FAF218631DCBF09000B1F684 /* APICore.swift */,
+				FAE5E34F1DDAEF020017E9B9 /* APICache.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEECDD41DD3959500F2476C /* APICache.swift in Sources */,
+				FAE5E3501DDAEF020017E9B9 /* APICache.swift in Sources */,
 				FAF8968F1DC6028E007780BC /* KPI_Rozklad.xcdatamodeld in Sources */,
 				FAB810CB1DD1192D0080791A /* AddTaskView.swift in Sources */,
 				FAF896891DC6028E007780BC /* MainView.swift in Sources */,
@@ -290,11 +290,11 @@
 				FA6233C81DD279BB00833B83 /* ScheduleLessonCell.swift in Sources */,
 				FAF218661DCBF09000B1F684 /* APICore.swift in Sources */,
 				FAB810BB1DD0D90E0080791A /* TasksView.swift in Sources */,
-				FAB810C91DD114060080791A /* ChooseGroupView.swift in Sources */,
 				FAB810B91DD0D8CB0080791A /* TeachersView.swift in Sources */,
 				FA1D86961DD00FE900ACCDE3 /* SettingsView.swift in Sources */,
 				FAB810CD1DD1272C0080791A /* AddNoteView.swift in Sources */,
 				FAF896871DC6028E007780BC /* AppDelegate.swift in Sources */,
+				FAD810A41DDB99B50046F392 /* ChooseGroupView.swift in Sources */,
 				FAF218651DCBF09000B1F684 /* APISchedule.swift in Sources */,
 				FA1D86941DD0014600ACCDE3 /* ScheduleView.swift in Sources */,
 				FAF218641DCBF09000B1F684 /* SwiftyJSON.swift in Sources */,
