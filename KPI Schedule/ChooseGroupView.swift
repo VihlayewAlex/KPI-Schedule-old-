@@ -8,11 +8,17 @@
 
 import UIKit
 
-class ChooseGroupView: UITableViewController {
+class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate, UISearchDisplayDelegate {
     
+    @IBOutlet weak var loader: UIView!
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var groupsList: [APIGroup] = []
+    var groupsListBackup: [APIGroup] = []
+    
     var indexPathOfSelectedRow: IndexPath!
     var selectedRowGroupID: Int!
     var selectedRowGroupNAME: String!
@@ -21,11 +27,21 @@ class ChooseGroupView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.searchBar.delegate = self
+        
+        
+        loader.layer.cornerRadius = 5
+        tableView.isUserInteractionEnabled = false
+        searchBar.isUserInteractionEnabled = false
+        saveButton.isEnabled = false
+        
         
         DispatchQueue.global(qos: .background).async {
             // Get schedule
             
-            var urlString = "http://api.rozklad.hub.kpi.ua/groups/?limit=50"
+            var urlString = "http://api.rozklad.hub.kpi.ua/groups/?limit=100"
             
             repeat {
                 
@@ -34,8 +50,23 @@ class ChooseGroupView: UITableViewController {
                 if (groupsFragmentResponse.0 != nil) {
                     
                     DispatchQueue.main.async {
+                        
+                        var indexPathArr : [IndexPath] = []
+                        
+                        for group in groupsFragmentResponse.0! {
+                            indexPathArr.append( IndexPath(row: group.id-1, section: 0) )
+                        }
+                        
+                        self.tableView.beginUpdates()
                         self.groupsList += (groupsFragmentResponse.0)!
-                        self.tableView.reloadData()
+                        
+                        self.tableView.insertRows(at: indexPathArr, with: UITableViewRowAnimation.fade)
+                        
+                        self.tableView.endUpdates()
+                        
+                        self.groupsListBackup = self.groupsList
+                        
+                        
                     }
                     
                 } else {
@@ -54,6 +85,13 @@ class ChooseGroupView: UITableViewController {
             } while (getGroupFragmentResponse(fromURLString: urlString).1 != nil)
             
             
+            DispatchQueue.main.async {
+                self.tableView.isUserInteractionEnabled = true
+                self.searchBar.isUserInteractionEnabled = true
+                self.saveButton.isEnabled = true
+                self.loader.removeFromSuperview()
+            }
+            
             print("\nDEBUG: Loading done\n")
             
             if self.groupsList.count == 0 {
@@ -71,6 +109,16 @@ class ChooseGroupView: UITableViewController {
         
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        loader.layer.shadowColor = UIColor.black.cgColor
+        loader.layer.shadowOpacity = 0.3
+        loader.layer.shadowRadius = 10
+        loader.layer.shadowPath = UIBezierPath(rect: loader.bounds).cgPath
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,16 +152,16 @@ class ChooseGroupView: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupsList.count
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         
         cell.textLabel?.text = groupsList[indexPath.row].name
@@ -130,7 +178,7 @@ class ChooseGroupView: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRowGroupID = groupsList[indexPath.row].id
         selectedRowGroupNAME = groupsList[indexPath.row].name
         if indexPathOfSelectedRow != nil {
@@ -140,6 +188,32 @@ class ChooseGroupView: UITableViewController {
         indexPathOfSelectedRow = indexPath
         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
     }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        
+        if !searchText.isEmpty {
+            
+            var groupsListFiltered: [APIGroup] = []
+        
+            for group in groupsListBackup {
+                if group.name.hasPrefix(searchText.lowercased()) {
+                    groupsListFiltered.append(group)
+                }
+            }
+        
+            groupsList = groupsListFiltered
+            self.tableView.reloadData()
+            
+        } else {
+            self.groupsList = self.groupsListBackup
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    
     
     
 }

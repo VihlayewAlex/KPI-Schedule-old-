@@ -87,13 +87,6 @@ class MainView: UIViewController {
         addTaskButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         addNoteButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
-        // Setup main screen root view's shadow
-        mainContentView.layer.shadowColor = UIColor.black.cgColor
-        mainContentView.layer.shadowOpacity = 0.3
-        mainContentView.layer.shadowOffset = CGSize.zero
-        mainContentView.layer.shadowRadius = 10
-        mainContentView.layer.shadowPath = UIBezierPath(rect: mainContentView.bounds).cgPath
-        
         // Setting group menu button corner radius
         groupRectangle.layer.cornerRadius = 8.0
         
@@ -132,6 +125,13 @@ class MainView: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        // Setup main screen root view's shadow
+        mainContentView.layer.shadowColor = UIColor.black.cgColor
+        mainContentView.layer.shadowOpacity = 0.3
+        mainContentView.layer.shadowOffset = CGSize.zero
+        mainContentView.layer.shadowRadius = 10
+        mainContentView.layer.shadowPath = UIBezierPath(rect: mainContentView.bounds).cgPath
         
         addTaskView.layer.shadowColor = UIColor.black.cgColor
         addTaskView.layer.shadowOpacity = 0.2
