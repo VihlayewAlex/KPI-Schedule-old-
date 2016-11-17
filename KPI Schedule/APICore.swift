@@ -11,8 +11,8 @@ import Alamofire
 
 
 
-let semaphore = DispatchSemaphore(value: 0)
-
+let semaphoreSchedule = DispatchSemaphore(value: 0)
+let semaphoreGroups = DispatchSemaphore(value: 0)
 
 
 // RECEIVES URL, RETURNS SCHEDULE OBJECT
@@ -28,10 +28,10 @@ func getAPISchedule(forID id: Int) -> APISchedule? {
     
     makeAlamofireScheduleRequest(urlString: urlString) { response in
         json = response
-        semaphore.signal()
+        semaphoreSchedule.signal()
     }
     
-    semaphore.wait()
+    semaphoreSchedule.wait()
     
     
     
@@ -289,10 +289,10 @@ func getGroupFragmentResponse(fromURLString urlString: String) -> ([APIGroup]?,S
     
     makeAlamofireGroupFragmentRequest(urlString: urlString) { response in
         json = response
-        semaphore.signal()
+        semaphoreGroups.signal()
     }
     
-    semaphore.wait()
+    semaphoreGroups.wait()
     
     if json != nil {
         if let groupsArray = json?["results"].array {
@@ -309,8 +309,10 @@ func getGroupFragmentResponse(fromURLString urlString: String) -> ([APIGroup]?,S
             
         }
         
-        if let next = json?["next"].string {
-            nextFragmentURLString = next
+        if json?["next"].string != nil {
+            nextFragmentURLString = json?["next"].string
+        } else {
+            nextFragmentURLString = nil
         }
         
         return (groupsListFragment,nextFragmentURLString)

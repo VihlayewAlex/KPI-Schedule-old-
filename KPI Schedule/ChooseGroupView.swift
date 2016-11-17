@@ -23,7 +23,6 @@ class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDeleg
     var selectedRowGroupID: Int!
     var selectedRowGroupNAME: String!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,85 +37,84 @@ class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDeleg
         saveButton.isEnabled = false
         
         
+        
+        
+        // START DATA LOAD IN BACKGROUND
         DispatchQueue.global(qos: .background).async {
-            // Get schedule
             
+            // first page url
             var urlString = "http://api.rozklad.hub.kpi.ua/groups/?limit=100"
             
-            repeat {
+            // Groups load loop
+            while (getGroupFragmentResponse(fromURLString: urlString).0 != nil) {
                 
-                let groupsFragmentResponse = getGroupFragmentResponse(fromURLString: urlString)
+                // Receiving data from JSON
+                let groupsFragmentResponse: ([APIGroup]?,String?) = getGroupFragmentResponse(fromURLString: urlString)
                 
-                if (groupsFragmentResponse.0 != nil) {
-                    
-                    DispatchQueue.main.async {
-                        
-                        var indexPathArr : [IndexPath] = []
-                        
-                        for group in groupsFragmentResponse.0! {
-                            indexPathArr.append( IndexPath(row: group.id-1, section: 0) )
-                        }
-                        
-                        self.tableView.beginUpdates()
-                        self.groupsList += (groupsFragmentResponse.0)!
-                        
-                        self.tableView.insertRows(at: indexPathArr, with: UITableViewRowAnimation.fade)
-                        
-                        self.tableView.endUpdates()
-                        
-                        self.groupsListBackup = self.groupsList
-                        
-                        
-                    }
-                    
-                } else {
-                    
-                    DispatchQueue.main.async {
-                        self.groupsList = []
-                    }
-                    
+                
+                if groupsFragmentResponse.0 == nil {        // If resonse array is empty
+                    self.groupsList = []
                     break
+                } else {        // If data is OK
+                    
+                    var indexPathArr : [IndexPath] = []
+                    
+                    for group in groupsFragmentResponse.0! {
+                        indexPathArr.append( IndexPath(row: group.id-1, section: 0) )
+                    }
+                    
+                    self.groupsList += (groupsFragmentResponse.0)!
+                    self.groupsListBackup = self.groupsList
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.beginUpdates()
+                        self.tableView.insertRows(at: indexPathArr, with: UITableViewRowAnimation.fade)
+                        self.tableView.endUpdates()
+                    }
+                    
                 }
                 
                 if groupsFragmentResponse.1 != nil {
                     urlString = (groupsFragmentResponse.1)!
+                } else {
+                    break
                 }
                 
-            } while (getGroupFragmentResponse(fromURLString: urlString).1 != nil)
-            
-            
-            DispatchQueue.main.async {
-                self.tableView.isUserInteractionEnabled = true
-                self.searchBar.isUserInteractionEnabled = true
-                self.saveButton.isEnabled = true
-                self.loader.removeFromSuperview()
             }
             
-            print("\nDEBUG: Loading done\n")
             
+            
+            print("\nDEBUG: Loading done. Preparing UI.\n")
+            
+            // If list is empty after loading
             if self.groupsList.count == 0 {
                 
-                let alert = UIAlertController(title: "No connection", message: "Cannot load groups due to no internet access. Reconnect and try again.", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
-                    _ = self.navigationController?.popViewController(animated: true)
-                }))
-                self.present(alert, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.loader.removeFromSuperview()
+                    let alert = UIAlertController(title: "No connection", message: "Cannot load groups due to no internet access. Reconnect and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
                 
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.isUserInteractionEnabled = true
+                    self.searchBar.isUserInteractionEnabled = true
+                    self.saveButton.isEnabled = true
+                    self.loader.removeFromSuperview()
+                }
             }
             
             
         }
         
+
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        loader.layer.shadowColor = UIColor.black.cgColor
-        loader.layer.shadowOpacity = 0.3
-        loader.layer.shadowRadius = 10
-        loader.layer.shadowPath = UIBezierPath(rect: loader.bounds).cgPath
-    }
+    
     
     
     
@@ -188,7 +186,7 @@ class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDeleg
         indexPathOfSelectedRow = indexPath
         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
     }
-    
+ 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
