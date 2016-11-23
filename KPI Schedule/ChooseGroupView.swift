@@ -11,6 +11,7 @@ import UIKit
 class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate, UISearchDisplayDelegate {
     
     @IBOutlet weak var loader: UIView!
+    @IBOutlet weak var loaderBG: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -90,6 +91,10 @@ class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDeleg
             if self.groupsList.count == 0 {
                 
                 DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.2, animations: { () -> Void in
+                        self.loaderBG.layer.opacity = 0
+                    })
+                    self.loaderBG.removeFromSuperview()
                     self.loader.removeFromSuperview()
                     let alert = UIAlertController(title: "No connection", message: "Cannot load groups due to no internet access. Reconnect and try again.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (ACTION) -> Void in
@@ -104,6 +109,10 @@ class ChooseGroupView: UIViewController, UITableViewDataSource, UITableViewDeleg
                     self.searchBar.isUserInteractionEnabled = true
                     self.saveButton.isEnabled = true
                     self.loader.removeFromSuperview()
+                    UIView.animate(withDuration: 0.2, animations: { () -> Void in
+                        self.loaderBG.layer.opacity = 0
+                    })
+                    self.loaderBG.removeFromSuperview()
                 }
             }
             

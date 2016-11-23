@@ -1247,6 +1247,10 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzR-WW-aT9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.10120577642717749" green="0.12188848290860926" blue="0.15282451923076923" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="wwf-wR-ze6">
                                 <rect key="frame" x="105" y="206.5" width="109.5" height="90.5"/>
                                 <subviews>
@@ -1285,6 +1289,10 @@
                             <constraint firstAttribute="trailing" secondItem="cfc-xK-sBC" secondAttribute="trailing" id="Mcg-sX-vxn"/>
                             <constraint firstItem="toc-1Y-JLz" firstAttribute="top" secondItem="93z-zL-Dp6" secondAttribute="bottom" id="Pel-LI-8Je"/>
                             <constraint firstItem="93z-zL-Dp6" firstAttribute="top" secondItem="cfc-xK-sBC" secondAttribute="bottom" id="Rvs-ba-sXs"/>
+                            <constraint firstItem="toc-1Y-JLz" firstAttribute="top" secondItem="RzR-WW-aT9" secondAttribute="bottom" id="VjI-jd-f8F"/>
+                            <constraint firstAttribute="trailing" secondItem="RzR-WW-aT9" secondAttribute="trailing" id="mG7-EW-Bk5"/>
+                            <constraint firstItem="RzR-WW-aT9" firstAttribute="top" secondItem="P4V-n8-UlA" secondAttribute="bottom" id="qTs-QR-6aH"/>
+                            <constraint firstItem="RzR-WW-aT9" firstAttribute="leading" secondItem="DfJ-AP-FIa" secondAttribute="leading" id="tWc-wn-6XC"/>
                             <constraint firstItem="wwf-wR-ze6" firstAttribute="centerY" secondItem="DfJ-AP-FIa" secondAttribute="centerY" id="vtR-Qk-ttr"/>
                         </constraints>
                     </view>
@@ -1297,6 +1305,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="loader" destination="wwf-wR-ze6" id="aN4-3C-HlB"/>
+                        <outlet property="loaderBG" destination="RzR-WW-aT9" id="FKV-Mf-kQ0"/>
                         <outlet property="saveButton" destination="xCj-rV-uSJ" id="eGm-06-lDS"/>
                         <outlet property="searchBar" destination="cfc-xK-sBC" id="B45-UM-fIh"/>
                         <outlet property="tableView" destination="93z-zL-Dp6" id="ol6-0B-d6f"/>
